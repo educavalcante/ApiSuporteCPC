@@ -2,12 +2,12 @@ import { dbConnection } from '../database/dbConnection';
 import { sign } from 'jsonwebtoken';
 
 class AuthenticateUserApiService {
-  async execute(login: number, password: string) {
+  async execute(cnpj: string, email: string, senha: string) {
     const bd = new dbConnection();
 
-    const result = await bd.query('SELECT FIRST 1 CODIGO, NOME FROM LOGIN(?,?)', [login, password]);
+    const result = await bd.query('SELECT FIRST 1 USUARIO_NOME, USUARIO_EMAIL, USUARIO_CNPJ  FROM LOGIN(?,?,?)', [cnpj, email, senha]);
 
-    const id = result[0].CODIGO;
+    const id = result[0].USUARIO_NOME;
     console.log(id);
 
     if (!result) {

@@ -3,18 +3,18 @@ import { AuthenticateUserApiService } from '../services/AuthenticateUserApiServi
 
 
 class AuthenticateUserController {
-  async handle(request: Request, response: Response){
+  async handle(request: Request, response: Response) {
 
-    const { login, password } = request.body;
-    
+    const { cnpj, email, senha } = request.body;
+
     const service = new AuthenticateUserApiService();
 
-    try{
-      const result = await service.execute(login, password);
-  
+    try {
+      const result = await service.execute(cnpj, email, senha);
+
       return response.json(result);
-    }catch(err){
-      response.status(500).json({message: 'Login Inválido'});
+    } catch (err) {
+      response.status(500).json({ message: 'Login Inválido' });
     }
 
   }

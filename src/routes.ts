@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.post('/login', new AuthenticateUserController().handle);
 router.get('/patients', ensureAuthenticated, new PatientsController().handle);
-router.get('/chamados', ensureAuthenticated, new ChamadosController().handle);
+router.get('/chamados', new ChamadosController().handle);
 
 export default router;

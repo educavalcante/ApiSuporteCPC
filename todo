@@ -1,0 +1,22 @@
+✔ tratamento do erro @done(23-03-22 00:20)
+adicionar a biblioteca: 
+- yarn add express-async-errors
+no server apos tudo adcionar o tratamento dos erros assim coom oas importacoes
+>>> exemplo:
+    import express, { NextFunction, Request, Response } from 'express';
+app.use(
+  (err: Error, request: Request, response: Response, next: NextFunction) => {
+    if (err instanceof Error) {
+      return response.status(400).json({
+        message: err.message,
+      });
+    }
+
+    return response.status(500).json({
+      status: "error",
+      message: "Internal server error (app.use)",
+    });
+  }
+);
+
+// modificado o login agora esta retornando o erro

@@ -10,15 +10,18 @@ class AuthenticateUserApiService {
     const id = result[0].USUARIO_NOME;
     console.log(id);
 
-    if (!result) {
+    if (id === null) {
+      throw new Error("Login não encontrado")
       return;
+      //      throw new Error("dassads")
+      //
     }
 
     try {
       const token = sign({ id }, process.env.SECRET_ID, {
         expiresIn: "1d"
       });
-
+      console.log(token);
       return { token };
 
     } catch (err) {
